@@ -6,12 +6,11 @@ import { NotificationNotFound } from "./errors/notificationNotFoundError";
 describe("Cancel notification service", () => {
     it("should be able to Cancel a notification", async () => {
         const notificationRepository = new inMemoryNotificationRepository();
+        const cancelNotification = new CancelNotificationService(notificationRepository);
 
         const notification = makeNotification();
 
         await notificationRepository.create(notification);
-
-        const cancelNotification = new CancelNotificationService(notificationRepository);
 
         await cancelNotification.execute({ notificationId: notification.id });
 
