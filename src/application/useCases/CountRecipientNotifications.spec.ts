@@ -1,5 +1,6 @@
 import { Content } from "@application/entities/content";
 import { Notification } from "@application/entities/Notification";
+import { makeNotification } from "@test/factories/notificationFactory";
 import { inMemoryNotificationRepository } from "@test/repositories/inMemoryNotificationsRepository";
 import { CountRecipientNotificationsService } from "./CountRecipientNotifications";
 
@@ -8,29 +9,11 @@ describe("Cancel notification service", () => {
         const notificationRepository = new inMemoryNotificationRepository();
 
 
-        await notificationRepository.create(
-            new Notification({
-                category: "social",
-                content: new Content("friend request"),
-                recipientId: "recipient-1",
-            })
-        );
+        await notificationRepository.create(makeNotification({ recipientId: "recipient-1" }));
 
-        await notificationRepository.create(
-            new Notification({
-                category: "social",
-                content: new Content("friend request"),
-                recipientId: "recipient-1",
-            })
-        );
+        await notificationRepository.create(makeNotification({ recipientId: "recipient-1" }));
 
-        await notificationRepository.create(
-            new Notification({
-                category: "social",
-                content: new Content("friend request"),
-                recipientId: "recipient-2",
-            })
-        );
+        await notificationRepository.create(makeNotification({ recipientId: "recipient-2" }));
 
         const countRecipientNotifications = new CountRecipientNotificationsService(notificationRepository);
 
