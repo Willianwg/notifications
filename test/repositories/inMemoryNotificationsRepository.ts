@@ -7,4 +7,12 @@ export class inMemoryNotificationRepository implements NotificationRepository {
     async create(notification: Notification) {
         this.notifications.push(notification);
     }
+
+    async findById(notificationId: string): Promise<Notification | null> {
+        return null;
+    }
+
+    async save(notification: Notification): Promise<void> {
+        
+    }
 }

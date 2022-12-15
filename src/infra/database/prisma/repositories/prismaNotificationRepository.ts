@@ -15,4 +15,12 @@ export class PrismaNotificationRepository implements NotificationRepository {
             data: mappedData,
         })
     }
+
+    async findById(notificationId: string): Promise<Notification | null> {
+        return null;
+    }
+
+    async save(notification: Notification): Promise<void> {
+        
+    }
 }
